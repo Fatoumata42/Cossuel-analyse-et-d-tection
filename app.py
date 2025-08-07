@@ -12,6 +12,7 @@ Original file is located at
 import dash
 import pandas as pd
 import numpy as np
+import dash_auth
 from dash import html, dcc, Input, Output
 import plotly.express as px
 from sklearn.ensemble import IsolationForest
@@ -151,8 +152,6 @@ import plotly.express as px
 import pandas as pd
 import dash_table
 
-# 📥 Charger et préparer les données (remplace par ton vrai DataFrame si besoin)
-#df = pd.read_csv("donnees_cossuel.csv")  # ou ton propre fichier
 
 # ➕ Convertir Mois en string (évite l'erreur "Period not JSON serializable")
 df["Mois"] = df["Mois"].astype(str)
@@ -186,12 +185,20 @@ anomalies_par_mois["Taux_Suspect"] = anomalies_par_mois["Suspecte"] / (
     anomalies_par_mois["Suspecte"] + anomalies_par_mois["Normale"]) * 100
 anomalies_par_mois = anomalies_par_mois.reset_index()
 
+# Identifiants autorisés (username:password)
+VALID_USERNAME_PASSWORD_PAIRS = {
+    'admin': 'Cos2025'
+}
+
 # 🏁 Initialiser l’application Dash
 app = dash.Dash(__name__)
+auth = dash_auth.BasicAuth(app, VALID_USERNAME_PASSWORD_PAIRS)
+server = app.server  # Nécessaire pour Render
 app.title = "Analyse COSSUEL"
 
 # 🎨 Interface utilisateur
 app.layout = html.Div([
+    html.H1("🔒 Tableau de Bord Sécurisé"),
     html.H2("📊 Tableaux de Bord - Analyse des demandes COSSUEL"),
 
     dcc.Graph(id='graph-demandes', figure=px.bar(demandes_par_mois, x='Mois', y='Nombre',
@@ -319,5 +326,5 @@ def verifier_duree_saisie(inspecteur):
 
 # 🚀 Lancer l'application
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run_server(debug=True)
 
