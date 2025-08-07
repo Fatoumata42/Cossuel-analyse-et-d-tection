@@ -4,7 +4,7 @@ numpy
 scikit-learn
 plotly
 gunicorn
-dash
+dash_table
 dash-auth
 
 
