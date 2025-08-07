@@ -140,11 +140,6 @@ def detecter_fraude(row):
 df['Fraude'] = df.apply(detecter_fraude, axis=1)
 
 
-
-
-
-!pip install dash_table
-
 import dash
 from dash import html, dcc, Input, Output
 import plotly.express as px
