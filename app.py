@@ -16,8 +16,6 @@ from dash import html, dcc, Input, Output
 import plotly.express as px
 from sklearn.ensemble import IsolationForest
 
-from google.colab import drive
-drive.mount('/content/drive')
 
 import pandas as pd
 
