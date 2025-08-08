@@ -21,10 +21,10 @@ from sklearn.ensemble import IsolationForest
 #file_path = '/content/drive/My Drive/Détection_Anomalies_Tableaux_de_bord/data/Extractions.xlsx'
 
 # Lire le fichier
-#df = pd.read_excel(file_path)
+df = pd.read_excel(file_path)
 
 # Afficher les 5 premières lignes
-#print(df.head())
+print(df.head())
 
 # Nettoyage automatique des noms de colonnes
 df.columns = df.columns.str.strip()           # Supprime les espaces autour
