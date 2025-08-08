@@ -18,7 +18,7 @@ from sklearn.ensemble import IsolationForest
 
 
 
-#file_path = '/content/drive/My Drive/Détection_Anomalies_Tableaux_de_bord/data/Extractions.xlsx'
+file_path = 'Extractions.xlsx'
 
 # Lire le fichier
 df = pd.read_excel(file_path)
